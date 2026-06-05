@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { CheckCircle2, Download, Loader2, AlertTriangle, ArrowLeft, ShieldCheck, Copy } from 'lucide-react';
 import axios from 'axios';
+import API_URL from '../config';
 
 const Success = () => {
   const [searchParams] = useSearchParams();
@@ -20,7 +21,7 @@ const Success = () => {
       }
 
       try {
-        const response = await axios.get(`/api/appeal-status?session_id=${sessionId}`);
+        const response = await axios.get(`${API_URL}/api/appeal-status?session_id=${sessionId}`);
         if (response.data.status === 'completed') {
           setAppeal(response.data.appeal);
           setLoading(false);

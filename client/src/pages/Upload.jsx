@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Upload as UploadIcon, FileText, ArrowLeft, ShieldCheck, Info } from 'lucide-react';
 import axios from 'axios';
+import API_URL from '../config';
 
 const Upload = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Upload = () => {
       data.append('ticketType', formData.ticketType);
 
       // We'll create this endpoint in the backend
-      const response = await axios.post('/api/upload-and-pay', data);
+      const response = await axios.post(`${API_URL}/api/upload-and-pay`, data);
       
       // Redirect to Stripe checkout
       if (response.data.checkoutUrl) {
